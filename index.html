@@ -20,11 +20,13 @@
 
       <nav class="navbar">
         <div class="logo">AnnieInFocus</div>
-        <div class="hamburger" id="hamburger">
+      
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span>
           <span></span>
           <span></span>
         </div>
+      
         <ul class="nav-links" id="navLinks">
           <li><a href="#">Home</a></li>
           <li><a href="#policy">Policy</a></li>
@@ -32,6 +34,7 @@
           <li><a href="booking.html">Contact</a></li>
         </ul>
       </nav>
+      
       
     
       <!-- Hero Section -->
@@ -236,6 +239,11 @@
 
 
    <script src="script.js"></script>
- 
+   <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
