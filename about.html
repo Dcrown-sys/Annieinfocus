@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About AnnieInfocus</title>
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <canvas id="star-canvas"></canvas>
+
+  <section class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to AnnieInfocus</h1>
+      <p>Where Dreams, Shadows, and Light Collide</p>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <h2>Our Story</h2>
+    <p>
+      Born from whispered dreams and endless twilight wanderings, AnnieInfocus captures the moments between heartbeats — those fleeting glimpses where time itself seems to hold its breath. 
+      Photography here is not just an art — it’s a portal, a preservation of wonder.
+    </p>
+  </section>
+
+  <section class="realms-gallery">
+    <h2>Explore the Realms</h2>
+    <div class="realms-container">
+      <div class="realm-card" onclick="location.href='moments/beach/beach-gallery.html'">
+        <img src="./images/IMG_5913.JPG" alt="Beach Realm">
+        <div class="realm-overlay">Beach Dreams</div>
+      </div>
+
+      <div class="realm-card" onclick="location.href='moments/lifestyle/lifestyle-gallery.html'">
+        <img src="./images/IMG_5912.JPG" alt="Lifestyle Realm">
+        <div class="realm-overlay">Whispers of Life</div>
+      </div>
+
+      <div class="realm-card" onclick="location.href='moments/restaurant/restaurant-gallery.html'">
+        <img src="./images/IMG_5774 2.JPG" alt="Restaurant Realm">
+        <div class="realm-overlay">Feasts & Echoes</div>
+      </div>
+      
+      <!-- You can add more realms here -->
+    </div>
+  </section>
+
+  <section class="vision-section">
+    <h2>Our Vision</h2>
+    <p>
+      To immortalize your most ethereal moments — from golden sands to midnight laughter — with imagery woven from light and spirit.  
+      Each photograph is a promise, a spell cast to never let beauty fade.
+    </p>
+  </section>
+
+  <footer class="dark-footer">
+    <p>&copy; 2025 AnnieInfocus Photography | Crafted from Light and Shadow</p>
+  </footer>
+
+
+
+  <script>
+    const canvas = document.getElementById('star-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    function createStars(count) {
+      stars = [];
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          speedX: (Math.random() - 0.5) * 0.2,
+          speedY: (Math.random() - 0.5) * 0.2,
+        });
+      }
+    }
+    createStars(120); // You can change the number of stars
+    
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+    
+      stars.forEach(star => {
+        star.x += star.speedX;
+        star.y += star.speedY;
+    
+        if (star.x < 0 || star.x > canvas.width) star.speedX *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.speedY *= -1;
+    
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+    </script>
+</body>
+</html>

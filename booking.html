@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="booking-section" id="booking-section">
+    <div class="booking-container">
+      <h2>📸 Book a Photography Session</h2>
+      <form id="booking-form" class="booking-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" required />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="time">Preferred Time</label>
+            <input type="time" id="time" name="time" required />
+          </div>
+
+          <div class="form-group">
+            <label for="service">Select Service</label>
+            <select id="service" name="service" required>
+              <option value="">-- Choose a Service --</option>
+              <option value="lifestyle">Lifestyle Photography</option>
+              <option value="beach">Beach Photography</option>
+              <option value="restaurant">Restaurant Photography</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="message">Additional Information</label>
+          <textarea id="message" name="message" rows="4"
+            placeholder="Any additional info or special requests"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-button">📅 Book Now</button>
+          <a href="index.html" class="back-link">🔙 Back to Home</a>
+        </div>
+
+        <p id="form-status" class="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init('rEsBk9doNwzmJnqG7');
+    })();
+  
+    // Grab the form
+    const form = document.getElementById('booking-form');
+  
+    // Add submit event listener
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent normal form submission
+  
+      emailjs.sendForm(
+        "safealertfly", // Your Service ID
+        "template_s7gx1ta", // Your Template ID
+        this, // The form element
+        "rEsBk9doNwzmJnqG7" // Your Public Key
+      ).then(
+        function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          alert("✅ Message sent successfully!");
+          form.reset(); // Clear the form only after successful sending
+        },
+        function(error) {
+          console.log('FAILED...', error);
+          alert("❌ Failed to send the message. Please try again.");
+        }
+      );
+    });
+  </script>
+</body>
+
+</html>
